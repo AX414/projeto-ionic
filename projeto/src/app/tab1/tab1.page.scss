@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+ion-item{
+  --padding-start: 16px;
+  --inner-padding-end: 16px;
+
+  ion-thumbnail{
+    height: 100%;
+    margin-inline-end: 10px;
+  }
+}
+
+h1{
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+p{
+  font-size: 0.7rem;
+}
+
+p+p{
+  color: #8a8a8a;
+}
+
+ion-chip{
+  padding-inline: 3px;
+}

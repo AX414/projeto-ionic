@@ -1,0 +1,66 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>Filmes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-searchbar placeholder="Pesquisar">
+  </ion-searchbar>
+
+  <ion-list>
+
+    <ion-item-sliding>
+      <ion-item lines="full">
+        <ion-thumbnail slot="start">
+          <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/bNBXskBHOwPSW21o7iT3N8QVg9L.jpg">
+        </ion-thumbnail>
+        <ion-label class="ion-text-wrap">
+          <div>
+            <h1>A Viagem de Chihiro</h1>
+            <p>20/07/2001 (JP) - 2h 6m</p>
+            <p>Animação, Família, Fantasia</p>
+          </div>
+        </ion-label>
+
+        <ion-chip color="success" outline>
+          <ion-label>85%</ion-label>
+        </ion-chip>
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option>
+          <ion-icon slot="icon-only" name="heart"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+
+    <ion-item-sliding>
+      <ion-item lines="full">
+        <ion-thumbnail slot="start">
+          <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/jHo6W1gkDbcFx5gAS8PuJnqXHge.jpg">
+        </ion-thumbnail>
+        <ion-label class="ion-text-wrap">
+          <div>
+            <h1>Meu amigo Totoro</h1>
+            <p>13/07/1990 (US) - 1h 27m</p>
+            <p>Fantasia, Animação, Família</p>
+          </div>
+        </ion-label>
+
+        <ion-chip color="success" outline>
+          <ion-label>81%</ion-label>
+        </ion-chip>
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option>
+          <ion-icon slot="icon-only" name="heart"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+
+  </ion-list>
+
+</ion-content>
