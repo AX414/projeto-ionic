@@ -6,16 +6,16 @@
 
 <ion-content [fullscreen]="true">
 
-  <ion-searchbar placeholder="Pesquisar">
-  </ion-searchbar>
+  <ion-searchbar placeholder="Pesquisar"></ion-searchbar>
 
   <ion-list>
 
     <ion-item-sliding *ngFor="let filme of listaFilmes">
-      <ion-item lines="full">
+      <ion-item lines="full" (click) = "exibirFilme(filme)">
         <ion-thumbnail slot="start">
           <img [src]="filme.cartaz">
         </ion-thumbnail>
+
         <ion-label class="ion-text-wrap">
           <div>
             <h1>{{filme.nome}}</h1>
