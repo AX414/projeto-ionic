@@ -12,11 +12,11 @@ ion-item{
 
 h1{
   font-weight: bold;
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 p{
-  font-size: 0.7rem;
+  font-size: 0.8rem;
 }
 
 p+p{
@@ -25,4 +25,11 @@ p+p{
 
 ion-chip{
   padding-inline: 3px;
+}
+
+ion-badge{
+  font-weight: 300;
+  font-size: 0.7rem;
+  display: inline-block;
+  margin-left: 2px;
 }
