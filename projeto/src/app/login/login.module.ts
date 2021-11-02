@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { KikiPageRoutingModule } from './kiki-routing.module';
+import { LoginPageRoutingModule } from './login-routing.module';
 
-import { KikiPage } from './kiki.page';
+import { LoginPage } from './login.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    KikiPageRoutingModule
+    LoginPageRoutingModule
   ],
-  declarations: [KikiPage]
+  declarations: [LoginPage]
 })
-export class KikiPageModule {}
+export class LoginPageModule {}
