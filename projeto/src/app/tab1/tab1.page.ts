@@ -76,6 +76,10 @@ export class Tab1Page implements OnInit{
       this.route.navigateByUrl('/dados-filme');
     }
 
+    desconectar(){
+      this.route.navigateByUrl('/login');
+    }
+
     async exibirAlertaFavorito() {
     const alert = await this.alertController.create({
       //cssClass: 'my-custom-class',
