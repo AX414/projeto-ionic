@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IListaFilmes } from '../models/iFilme.api.model';
+import { IListaFilmes } from '../models/IFilme.API.model';
 import { ToastController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,7 @@ export class FilmeService {
   lingua = 'pt-BR';
   regiao = 'BR';
 
-  private apiURL = 'https://www.themoviedb.org/3/';
+  private apiURL = 'https://api.themoviedb.org/3/';
   private key = '?api_key=1349533ccb10d11c1c39f3935086c536';
 
   constructor(private http: HttpClient, public toastController: ToastController) { }
