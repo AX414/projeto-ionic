@@ -1,5 +1,15 @@
 ion-content{
-  --background: black;
+  --background:white;
+}
+
+ion-card{
+  display:block;
+  margin-top: 50%;
+}
+
+#botoes{
+  display: inline-block;
+  margin-left: 15%;
 }
 
 .center{

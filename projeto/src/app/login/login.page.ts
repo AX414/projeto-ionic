@@ -18,7 +18,7 @@ export class LoginPage implements OnInit {
   }
 
   login(){
-    if(this.email === 'jp@hotmail.com' && this.senha === '123456'){
+    if(this.email === 'admin@hotmail.com' && this.senha === '123'){
       this.route.navigateByUrl('/tabs/tab1');
       this.apresentarToast('Seja bem-vindo!','success');
     }else{

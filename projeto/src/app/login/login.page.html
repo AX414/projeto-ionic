@@ -1,8 +1,6 @@
-<ion-content [fullscreen]="true">
-  <div class="center">
+<ion-content>
     <ion-card color="primary">
-      <img src="">
-      <ion-card-title class="ion-text-center">Movie Seeker</ion-card-title>
+      <ion-card-title class="ion-text-center">Movie DB</ion-card-title>
       <ion-item lines="none" color="primary">
         <ion-label position="floating">Email</ion-label>
         <ion-input type="email" [(ngModel)] = "email" placeholder="Digite seu email"></ion-input>
@@ -11,8 +9,9 @@
         <ion-label position="floating">Senha</ion-label>
         <ion-input type="password" [(ngModel)] = "senha" placeholder="Digite sua senha"></ion-input>
       </ion-item>
-      <ion-button (click)="login()" expand="full" fill="outline" color="light">Entrar</ion-button>
-      <ion-button expand="full" fill="outline" color="sucess">Registrar</ion-button>
+      <div id="botoes">
+        <ion-button (click)="login()" color="secondary">Entrar</ion-button>
+        <ion-button color="success">Registrar</ion-button>
+      </div>
     </ion-card>
-  </div>
 </ion-content>
