@@ -1,3 +1,5 @@
+import { IListaFilmes, IFilmeApi } from './../models/iFilme.API.model';
+import { FilmeService } from './../services/filme.service';
 import { DadosService } from './../services/dados.service';
 import { IFilme } from './../models/iFilme.model'; //modelo dos filmes
 import { Component } from '@angular/core';
@@ -13,6 +15,7 @@ import { Router } from '@angular/router';
 export class Tab1Page {
 
   title = 'Filmes';
+  /*
   listaFilmes: IFilme[] = [
     {
       nome: 'A Viagem de Chihiro',
@@ -42,13 +45,29 @@ export class Tab1Page {
       pagina: '/totoro',
     }
   ]; //coleção de filmes
+*/
+  listaFilmes: IListaFilmes;
 
   constructor(public alertController: AlertController,
               public toastController: ToastController,
               public dadosService: DadosService,
+              public filmeService: FilmeService,
               public route: Router) { }
 
-    exibirFilme(filme: IFilme){
+    buscarFilmes(evento: any){
+      console.log(evento.target.value);
+      const busca = evento.target.value;
+
+      if(busca && busca.trim()!== ''){
+        this.filmeService.buscarFilmes(busca).subscribe(dados => {
+          console.log(dados);
+          //pega os dados e coloca em uma lista de filmes auxiliar
+          this.listaFilmes = dados;
+        });
+      }
+    }
+
+    exibirFilme(filme: IFilmeApi){
       /*Guardando o filme no serviço de dados*/
       this.dadosService.guardarDados('filme',filme);
       this.route.navigateByUrl('/dados-filme');
@@ -78,15 +97,16 @@ export class Tab1Page {
     });
 
     await alert.present();
-  }
+    }
 
-  async apresentarToast() {
+    async apresentarToast() {
     const toast = await this.toastController.create({
       message: 'Filme adicionado aos favoritos.',
       duration: 2000,
       color: 'success'
     });
     toast.present();
-  }
+    }
+
 
 }
