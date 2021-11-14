@@ -1,6 +1,9 @@
+import { StorageService } from './../services/storage.service';
+import { Usuario } from './../models/usuario';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -9,21 +12,63 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPage implements OnInit {
 
-  email: string;
-  senha: string;
+  formLogin: FormGroup;
+  mensagens = {
+    nomeLogin: [
+      {tipo: 'required', mensagem: 'O campo nome de login é obrigatório!'},
+    ],
+    senha: [
+      {tipo: 'required', mensagem: 'O campo senha é obrigatório!'},
+      {tipo: 'minLength', mensagem: 'A senha deve ter pelo menos 6 caractéres!'}
+    ]
+    };
 
-  constructor(private route: Router,public toastController: ToastController) { }
+    listaUsuarios: Usuario[] = [];
 
-  ngOnInit() {
+  constructor(
+    private route: Router,
+    public toastController: ToastController,
+    private formBuilder: FormBuilder,
+    private storageService: StorageService
+    ) {
+    this.formLogin = this.formBuilder.group({
+      nomeLogin: ['', Validators.required],
+      senha: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
+    }); //recebe o objeto de estrutura do formulário
   }
 
-  login(){
-    if(this.email === 'admin@hotmail.com' && this.senha === '123'){
-      this.route.navigateByUrl('/tabs/tab1');
-      this.apresentarToast('Seja bem-vindo!','success');
+
+  ngOnInit() {
+    this.buscarUsuarios();
+  }
+
+  async buscarUsuarios(){
+    this.listaUsuarios = await this.storageService.getAll();
+  }
+
+  async login() {
+    console.log('Formulário: ',this.formLogin.valid);
+    if(this.formLogin.valid){
+
+      if (this.formLogin.value.nomeLogin === 'adm' && this.formLogin.value.senha === '123') {
+        this.route.navigateByUrl('/tabs/tab1');
+        this.apresentarToast('Seja bem-vindo!', 'success');
+      } else {
+        this.apresentarToast('Dados Inválidos!', 'danger');
+      }
+
+      if(this.formLogin.value.nomeLogin === this.listaUsuarios.find(this.formLogin.value.email)){
+        console.log('Achou!');
+        this.route.navigateByUrl('/tabs/tab1');
+        this.apresentarToast('Seja bem-vindo!', 'success');
+      }else{
+        this.apresentarToast('Dados Inválidos!', 'danger');
+      }
+
     }else{
-      this.apresentarToast('Dados Inválidos!','danger');
+      this.apresentarToast('Dados Inválidos!', 'danger');
     }
+
   }
 
   async apresentarToast(texto: string, cor: string) {

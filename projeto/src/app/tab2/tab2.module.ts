@@ -12,6 +12,7 @@ import { Tab2PageRoutingModule } from './tab2-routing.module';
     IonicModule,
     CommonModule,
     FormsModule,
+    RouterModule,
     Tab2PageRoutingModule
   ],
   declarations: [Tab2Page]
