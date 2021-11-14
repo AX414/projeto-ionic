@@ -46,32 +46,17 @@ export class LoginPage implements OnInit {
     this.listaUsuarios = await this.storageService.getAll();
   }
 
-  async login() {
+login() {
     console.log('Formulário: ',this.formLogin.valid);
-    if(this.formLogin.valid){
-
       if (this.formLogin.value.nomeLogin === 'adm' && this.formLogin.value.senha === '123') {
         this.route.navigateByUrl('/tabs/tab1');
         this.apresentarToast('Seja bem-vindo!', 'success');
       } else {
         this.apresentarToast('Dados Inválidos!', 'danger');
       }
+}
 
-      if(this.formLogin.value.nomeLogin === this.listaUsuarios.find(this.formLogin.value.email)){
-        console.log('Achou!');
-        this.route.navigateByUrl('/tabs/tab1');
-        this.apresentarToast('Seja bem-vindo!', 'success');
-      }else{
-        this.apresentarToast('Dados Inválidos!', 'danger');
-      }
-
-    }else{
-      this.apresentarToast('Dados Inválidos!', 'danger');
-    }
-
-  }
-
-  async apresentarToast(texto: string, cor: string) {
+async apresentarToast(texto: string, cor: string) {
     const toast = await this.toastController.create({
       message: texto,
       duration: 2000,
