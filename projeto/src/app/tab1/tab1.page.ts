@@ -76,9 +76,33 @@ export class Tab1Page implements OnInit{
       this.route.navigateByUrl('/dados-filme');
     }
 
-    desconectar(){
-      this.route.navigateByUrl('/login');
+    async desconectar(){
+      const alert = await this.alertController.create({
+        //cssClass: 'my-custom-class',
+        header: 'Alerta!',
+        message: 'Deseja desconectar?',
+        buttons: [
+          {
+            text: 'Não',
+            role: 'cancel',
+            //cssClass: 'secondary',
+            handler: (blah) => {
+              console.log('Confirm Cancel: blah');
+            }
+          }, {
+            text: 'Sim, desconectar.',
+            handler: () => {
+              //console.log('Confirm Okay');
+              this.apresentarToast('Usuário desconectado com sucesso.','success');
+              this.route.navigateByUrl('/login');
+            }
+          }
+        ]
+      });
+
+      await alert.present();
     }
+
 
     async exibirAlertaFavorito() {
     const alert = await this.alertController.create({
@@ -97,7 +121,7 @@ export class Tab1Page implements OnInit{
           text: 'Sim, favoritar!',
           handler: () => {
             //console.log('Confirm Okay');
-            this.apresentarToast();
+            this.apresentarToast('Filme adicionado aos favoritos.','success');
           }
         }
       ]
@@ -106,13 +130,13 @@ export class Tab1Page implements OnInit{
     await alert.present();
     }
 
-    async apresentarToast() {
-    const toast = await this.toastController.create({
-      message: 'Filme adicionado aos favoritos.',
-      duration: 2000,
-      color: 'success'
-    });
-    toast.present();
+    async apresentarToast(texto: string, cor: string) {
+      const toast = await this.toastController.create({
+        message: texto,
+        duration: 2000,
+        color: cor
+      });
+      toast.present();
     }
 
     ngOnInit(){

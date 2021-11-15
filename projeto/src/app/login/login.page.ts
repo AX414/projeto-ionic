@@ -48,7 +48,7 @@ export class LoginPage implements OnInit {
 
 login() {
     console.log('Formulário: ',this.formLogin.valid);
-      if (this.formLogin.value.nomeLogin === 'adm' && this.formLogin.value.senha === '123') {
+      if (this.formLogin.value.nomeLogin === 'adm' && this.formLogin.value.senha === 'adm123') {
         this.route.navigateByUrl('/tabs/tab1');
         this.apresentarToast('Seja bem-vindo!', 'success');
       } else {
