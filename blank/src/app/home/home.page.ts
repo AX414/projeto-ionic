@@ -1,7 +1,9 @@
-/* eslint-disable @typescript-eslint/no-shadow */
+/* eslint-disable @typescript-eslint/type-annotation-spacing */
+/* eslint-disable @typescript-eslint/dot-notation */
+/* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable @typescript-eslint/semi */
+import { UserService } from './../services/user.service';
 import { Component } from '@angular/core';
-import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-home',
@@ -10,49 +12,29 @@ import { ApiService } from '../services/api.service';
 })
 export class HomePage {
 
-  constructor(private apiService: ApiService) {
-    this.createData();
-    this.readData();
-    this.updateData();
+  public listaUsuarios: any = [];
+  public pagina = 1;
+  public totalPaginas = 1;
+
+  constructor(private userService: UserService){}
+
+  ionViewWillEnter(){
+    //busca a primeira página de usuários
+    this.buscarUsuarios(1);
   }
 
-  createData(){
-    const data: any = {
-      title: 'Joao',
-      body: 'Teste',
-      userId: 10
-    };
-
-
-    this.apiService.createData(data).subscribe(data =>{
-      console.log(data);
+  public buscarUsuarios(pagina:number){
+    //se o número for incorreto, coloca 1 como default
+    if(pagina<=0){
+      pagina = 1;
+    }
+    this.pagina = pagina;
+    //pede a informação da internet e guarda em dados
+    this.userService.buscarTodos(pagina).subscribe(dados =>{
+      this.listaUsuarios = dados['data'];
+      this.totalPaginas = dados['data'];
+      console.log("Lista: ", this.listaUsuarios);
     });
   }
-
-  readData(){
-    this.apiService.readData().subscribe(data =>{
-      console.log(data);
-    });
-  }
-
-  updateData(){
-    const data: any = {
-      id: 1,
-      title: 'Joao',
-      body: 'TesteUpdate',
-      userId: 10
-    };
-
-    this.apiService.updateData(data).subscribe(data =>{
-      console.log(data);
-    });
-  }
-
-  deleteData(){
-    this.apiService.deleteData().subscribe(data =>{
-      console.log(data);
-    });
-  }
-
 
 }

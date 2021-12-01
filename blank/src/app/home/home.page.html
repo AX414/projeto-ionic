@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
       API Rest - Regres
     </ion-title>
@@ -8,4 +8,39 @@
 
 <ion-content [fullscreen]="true">
 
+  <ion-item *ngFor="let user of listaUsuarios" [routerLink]="'/exibirUsuario/' + user.id">
+    <ion-thumbnail slot="start">
+      <img [src]="user.avatar" alt="Imagem">
+    </ion-thumbnail>
+
+    <div>
+      <h3>{{user.first_name + '' + user.last_name}}</h3>
+      <p>{{user.email}}</p>
+      <ion-badge color="primary" slot="end">
+        {{user.id}}
+      </ion-badge>
+    </div>
+  </ion-item>
+
+
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar color="primary" class="ion-text-center">
+
+    <ion-buttons slot="start" *ngIf="pagina>1">
+      <ion-button (click)="buscarUsuarios(pagina - 1)">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    Página: {{pagina}}
+
+    <ion-buttons slot="end" *ngIf="pagina<totalPaginas">
+      <ion-button (click)="buscarUsuarios(pagina + 1)">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-footer>
