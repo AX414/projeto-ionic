@@ -14,16 +14,19 @@
     <img [src]="user.avatar" alt="Foto">
 
     <ion-card>
+
       <ion-item color="primary">
         <ion-label class="strong">
           Nome:
         </ion-label>
       </ion-item>
+
       <ion-item color="primary">
         <ion-label>
           {{user.first_name}} {{user.last_name}}
         </ion-label>
       </ion-item>
+
     </ion-card>
 
     <ion-card>
@@ -40,7 +43,18 @@
     </ion-card>
 
 
-
+    <ion-card>
+      <ion-item color="primary">
+        <ion-label class="strong">
+          Trabalho:
+        </ion-label>
+      </ion-item>
+      <ion-item color="primary">
+        <ion-label>
+          {{user.job}}
+        </ion-label>
+      </ion-item>
+    </ion-card>
 
   </div>
 </ion-content>

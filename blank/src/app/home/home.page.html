@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-<ion-item-sliding *ngFor="let user of listaUsuarios" [routerLink]="'/exibirUsuario/' + user.id">
+<ion-item-sliding *ngFor="let user of listaUsuarios" >
 
   <ion-item>
     <ion-thumbnail slot="start">
@@ -24,6 +24,9 @@
   </ion-item>
 
   <ion-item-options side="end">
+    <ion-item-option color="secondary" [routerLink]="'/exibir-usuario/' + user.id">
+      <ion-icon name="eye" slot="icon-only"></ion-icon>
+    </ion-item-option>
     <ion-item-option color="warning" [routerLink]="'/alterar/' + user.id">
       <ion-icon name="create-outline" slot="icon-only"></ion-icon>
     </ion-item-option>
@@ -32,7 +35,7 @@
 </ion-item-sliding>
 
 <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-  <ion-fab-button color="success" routerlink="/cadastrar">
+  <ion-fab-button color="success" routerLink="/cadastrar">
     <ion-icon name="add"></ion-icon>
   </ion-fab-button>
 </ion-fab>
